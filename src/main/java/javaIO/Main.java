@@ -9,5 +9,7 @@ public class Main {
         obj.readTextFile();
         obj.readTextFile_FileReader();
         obj.readTextFile_FileInput();
+        obj.writeTextToFile_FileWriter();
+        obj.readTextFile();
     }
 }

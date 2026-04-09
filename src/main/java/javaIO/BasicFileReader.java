@@ -1,6 +1,7 @@
 package javaIO;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class BasicFileReader {
 
@@ -50,4 +51,50 @@ public class BasicFileReader {
         System.out.println(fileContent);
     }
 
+    public void writeTextToFile() throws IOException {
+        OutputStream out = new FileOutputStream(relativePathToFile, true);
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
+
+        String text = "";
+        Scanner scanner = new Scanner(System.in);
+
+        while (!(text = scanner.nextLine()).equals("exit")) {
+            writer.write(text);
+            writer.append(System.lineSeparator());
+            writer.flush();
+        }
+        scanner.close();
+        out.close();
+    }
+
+    public void writeTextToFile_FileOutput() throws IOException {
+        FileOutputStream out = new FileOutputStream(relativePathToFile, true);
+
+        String text = "";
+        Scanner scanner = new Scanner(System.in);
+        while(!(text = scanner.nextLine()).equals("exit")) {
+            for(char c : text.toCharArray()) {
+                int ch = c;
+                out.write(ch);
+            }
+            out.write('\n');
+            out.flush();
+        }
+        scanner.close();
+        out.close();
+    }
+
+    public void writeTextToFile_FileWriter() throws IOException {
+        FileWriter fw = new FileWriter(relativePathToFile, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        Scanner scanner = new Scanner(System.in);
+        String line;
+        while(!(line = scanner.nextLine()).equals("exit")) {
+            bw.write(line);
+            bw.write(System.lineSeparator());
+        }
+
+        scanner.close();
+        bw.close();
+    }
 }
